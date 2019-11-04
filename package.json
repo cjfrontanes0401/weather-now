@@ -1,0 +1,27 @@
+{
+  "name": "weather-now",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo\"error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  
+   
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjfrontanes0401/weather-now.git"
+  },
+  "author": "Christian Frontanes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjfrontanes0401/weather-now/issues"
+  },
+  "homepage": "https://github.com/cjfrontanes0401/weather-now#readme"
+}

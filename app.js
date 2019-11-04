@@ -13,7 +13,7 @@ app.use(express.static("./public"));
 */
 
 // GET //
-app.git("/", function (req, res){
+app.get("/", function (req, res){
     res.render("home.ejs");
 }); 
 
