@@ -14,9 +14,18 @@
             <input name="city" class="ghost-input" type="text" placeholder="Enter City">
             <input class="ghost-button" type="submit" value="weather now">
         </form>
-
-        <p>The weather in New York is 70 C</p>
         
-   </div> 
+        <%= if{error}{ %>
+                <p><%= error %></p>
+           <% } else { %>
+                <p><%= weather %></p>
+            <% } %>
+
+
+
+        <p><%= weather %></p>
+        <p><%= error %></p>
+
+    </div> 
 </body>
 </html>
