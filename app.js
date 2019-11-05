@@ -1,7 +1,11 @@
-const express= require("express");
+require('dotenv').config()
+const express = require("express");
 const bodyParser = require("body-parser");
+const request = require("request");
 
 const app = express();
+
+const apikey = process.env.APIKEY;
 
 //setting view engine
 app.set("view engine", "ejs");
@@ -16,13 +20,29 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // GET //
 app.get("/", function (req, res){
-    res.render("home.ejs", {weather: weatherNow});
+    res.render("home.ejs", {weather: null, error: null});
 }); 
 
 app.post("/", function(req, res){
-    let weatherNow = "The weather in" + req.body.city + "is 70 C"
-    let error = false;
-    res.render("home.ejs", {weather: weatherNow});
+   
+    let url = "http://api.openweathermap.org/data/2.5/weather?q=" + req.body.city + "&units=imperial&APPID=" +apikey;
+
+    request(url, function (error, response, body) {
+        if(error){
+            res.render("home.ejs", { weather: weatherNow, error: "Error, please try again"})
+        } else {
+            let weather = (JSON.parse(body));
+            if(weather.main == undefined){
+                res.render("home.ejs", { weather: weatherNow, error: "Error, please try again"})
+            } else {
+                let weatherNow = "The weather in" + req.body.city + " is" + weather.main;
+                console.log(weather.main.temp + " degrees.");
+                res.render("home.ejs", {weather: weatherNow, error: null});
+            }
+        }
+    });
+
+
 });
 
 app.listen(3000, function(){
