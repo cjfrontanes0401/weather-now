@@ -15,7 +15,7 @@
             <input class="ghost-button" type="submit" value="weather now">
         </form>
         
-        <%= if{error}{ %>
+        <% if(error){ %>
                 <p><%= error %></p>
            <% } else { %>
                 <p><%= weather %></p>
